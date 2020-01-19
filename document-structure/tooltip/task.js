@@ -1,16 +1,32 @@
-const text = document.getElementsByClassName("has-tooltip");
 
-for (let i = 0; i < text.length; i++) {
-    let hints = text[i].getBoundingClientRect();
-    let faq = `<div class="tooltip tooltip_active" style="left:${hints.x}px">${text[i].title}</div>`;
 
-    text[i].addEventListener("click", function(event) {
-        event.preventDefault();
-        if(!event.target.nextElementSibling.classList.contains("tooltip_active")) {
-            event.target.insertAdjacentHTML("afterEnd",faq)
-        }else {
-            event.target.nextElementSibling.remove();
-        }
-    })
+
+let link = document.getElementsByClassName("has-tooltip");
+
+
+for (let i = 0; i < link.length; i++) {
+
+	let linkItem = link.item(i);
+
+    function callPrompt(eventClick) {
+	
+	    eventClick.preventDefault();	
+	
+	    let event = eventClick.target;
+		let element = document.createElement('div');
+		
+		let elementForDelete = document.getElementsByClassName("tooltip");
+		let elementForDeleteItem = elementForDelete.item(0);
+		
+		let parentOfElementForDelete = document.getElementsByTagName("body");
+		let parentOfElementForDeleteItem = parentOfElementForDelete.item(0);
+			
+		linkItem.insertAdjacentHTML("afterEnd", `<div class='tooltip tooltip_active'>${event.title}</div>`);
+		
+		if (elementForDeleteItem !== null ) {
+			parentOfElementForDeleteItem.removeChild(elementForDeleteItem);
+		}
+	}
+		
+	linkItem.addEventListener('click', callPrompt);
 }
-
