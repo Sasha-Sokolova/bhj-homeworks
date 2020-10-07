@@ -1,9 +1,10 @@
-const addText = function () {
-    const output = document.getElementById("timer");
-    output.textContent -= 1;
-    if (output.textContent <= 0) {
-        alert('Вы победили в конкурсе!');
-        clearInterval(inervalID);
+const timer = function() {
+    let time = document.getElementById("timer");
+        time.textContent --;
+        if (time.textContent <= 0) {
+            alert('Вы победили в конкурсе!');
+            clearInterval(interval);
+        }
     }
-}
-const inervalID = setInterval(addText, 1000);
+    const interval = setInterval(timer, 1000);
+    interval;
