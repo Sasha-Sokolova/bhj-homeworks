@@ -1,41 +1,36 @@
-const prevButton = document.querySelector(".slider__arrow_prev");
-const nextButton = document.querySelector(".slider__arrow_next");
+let slides=document.querySelector('.slider__items').children;
+let nextSlide=document.querySelector(".slider__arrow_next");
+let prevSlide=document.querySelector(".slider__arrow_prev");
+let totalSlides=slides.length;
+let index=0;
 
-let slideNumber = 0;
-
-const sliderImages = document.getElementsByClassName("slider__item");
-let sliderImage = sliderImages.item(slideNumber);
-
-nextButton.onclick = function() {
-    if (slideNumber >= 0 && slideNumber < sliderImages.length - 1) {
-        slideNumber++;
-        sliderImage = sliderImages.item(slideNumber - 1);
-        sliderImage.classList.remove("slider__item_active");
-        sliderImage = sliderImages.item(slideNumber);
-        sliderImage.classList.add("slider__item_active");
-    } else {
-        slideNumber = 0;
-        sliderImage = sliderImages.item(slideNumber);
-        sliderImage.classList.add("slider__item_active");
-        for (let i = 1; i < 5; i++) {
-            sliderImage = sliderImages.item(slideNumber + i);
-            sliderImage.classList.remove("slider__item_active");            
-        }
-    }
+nextSlide.onclick=function () {
+     next("next");
+}
+prevSlide.onclick=function () {
+     next("prev");
 }
 
-prevButton.onclick = function() {
-    if (slideNumber < sliderImages.length && slideNumber > 0 ) {
-        slideNumber--;
-        sliderImage = sliderImages.item(slideNumber + 1);
-        sliderImage.classList.remove("slider__item_active");
-        sliderImage = sliderImages.item(slideNumber);
-        sliderImage.classList.add("slider__item_active");
-    } else {
-        slideNumber = (sliderImages.length - 1);
-        sliderImage = sliderImages.item(0);
-        sliderImage.classList.remove("slider__item_active");
-        sliderImage = sliderImages.item(slideNumber);
-        sliderImage.classList.add("slider__item_active");        
-    }         
+function next(direction){
+
+   if (direction=="next"){
+      index++;
+       if (index==totalSlides){
+        index=0;
+       }
+   } 
+   else {
+           if (index==0){
+            index=totalSlides-1;
+           }
+           else {
+            index--;
+           }
+    }
+
+  for (i=0; i<slides.length; i++){
+          slides[i].classList.remove("slider__item_active");
+  }
+  slides[index].classList.add("slider__item_active");     
+
 }
