@@ -1,5 +1,5 @@
 const menu = document.querySelectorAll(".tab");
-const content = document.querySelectorAll(".tab__content")
+const content = document.querySelectorAll(".tab__content");
 
 for (let i = 0; i < menu.length; i++) {    
     menu[i].addEventListener("click", function() {
