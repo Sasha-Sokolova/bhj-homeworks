@@ -3,7 +3,7 @@ const mainItem = document.querySelector(".dropdown__value");
 
 function getMenuItem() {
     list.classList.add("dropdown__list_active");
-    return false
+    return false;
 }
 mainItem.addEventListener("click", getMenuItem);
 
@@ -12,7 +12,7 @@ for (let i = 0; i < menuItems.length; i++) {
     menuItems.item(i).onclick = function() {
         mainItem.textContent = menuItems.item(i).textContent;
         list.classList.remove("dropdown__list_active");
-        return false        
+        return false;
     }
 }
 
